@@ -1,0 +1,130 @@
+aid: hotdoc
+name: HotDoc
+review:
+  question: Does HotDoc publish a public developer portal, a documented third-party API, or an HL7 FHIR CapabilityStatement?
+  answer: false
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: Australia
+findings:
+  summary: |
+    HotDoc is an Australian patient-engagement SaaS (founded 2012, Melbourne;
+    ~21,000 practitioners; ~1 in 3 Australians; acquired by Potentia Feb 2026)
+    for online bookings, telehealth, reminders/recalls, check-in, digital
+    registration forms, and online repeat prescriptions. It does NOT publish a
+    public developer portal, a documented third-party REST/OpenAPI, or an HL7
+    FHIR CapabilityStatement. HotDoc integrates by CONSUMING the APIs of
+    Australian practice-management systems (Best Practice, MedicalDirector,
+    Zedmed, Genie, Cliniko, Nookal): a clinic enables an integration by pasting
+    its PMS-issued API key into the HotDoc dashboard. HotDoc's own outward
+    integration surface is partner/PMS-gated and not documented publicly. No
+    endpoints, FHIR resources, or specs were invented; none were harvestable.
+  developerPortal:
+    url: ''
+    confirmed: false
+    note: |
+      No first-party developer portal exists. The subdomains developer.hotdoc.com.au,
+      developers.hotdoc.com.au, docs.hotdoc.com.au, api.hotdoc.com.au and
+      fhir.hotdoc.com.au all resolve to the same catch-all HotDoc Rails web
+      application (identical _HotDoc_session cookie, shared CloudFront asset
+      host) and render the consumer marketing/booking site — not API docs.
+  fhirCapabilityStatement:
+    captured: false
+    version: null
+    resources: []
+    note: |
+      Probed <host>/metadata, /fhir/metadata and /.well-known/smart-configuration
+      on api.hotdoc.com.au and fhir.hotdoc.com.au; all returned HTTP 404 (HTML
+      404 page from the catch-all app). No FHIR CapabilityStatement / conformance
+      and no SMART-on-FHIR configuration is served.
+  downloadableSpecs:
+    count: 0
+    provenance: []
+    note: |
+      Probed /openapi.json and /swagger.json on api.hotdoc.com.au; both HTTP 404.
+      No OpenAPI/Swagger, no Postman collection, and no FHIR metadata were found
+      or harvested. openapi/ is intentionally empty.
+  authModel: |
+    No public OAuth2 / SMART-on-FHIR / API-key surface is documented for HotDoc's
+    own API. For its practice-management integrations, authentication is delegated
+    to the source PMS: the clinic obtains a PMS-issued API key and enters it into
+    the HotDoc dashboard, so HotDoc authenticates to the PMS rather than issuing
+    third-party developer credentials of its own.
+  standardsConformance:
+    usCore: false
+    ukCore: false
+    auCore: false
+    daVinci: false
+    carin: false
+    note: |
+      No published FHIR conformance claims (AU Core / AU Base or otherwise) were
+      found. HotDoc's integration is via proprietary PMS APIs, not a documented
+      FHIR implementation guide.
+  access: gated
+  accessNote: |
+    Partner/PMS-gated. HotDoc is sold to clinics as a patient-engagement product;
+    there is no self-serve public API, sandbox, or developer sign-up. This is an
+    honest identity-only (built-stub) result — a documented public API surface
+    does not exist to catalog.
+  transports:
+    - protocol: HTTPS Web App
+      scheme: https
+      baseURL: https://www.hotdoc.com.au/
+      documented: true
+      note: Consumer booking/marketing web application; not a documented API.
+    - protocol: REST/OpenAPI
+      scheme: https
+      documented: false
+      note: No public OpenAPI/Swagger served; /openapi.json and /swagger.json return 404.
+    - protocol: FHIR
+      scheme: https
+      documented: false
+      note: No FHIR CapabilityStatement (/metadata) or SMART configuration served; all probes 404.
+  probes:
+    - url: https://www.hotdoc.com.au/
+      status: 200
+      note: Consumer site (Find a Doctor/GP/Dentist).
+    - url: https://practices.hotdoc.com.au/
+      status: 200
+      note: Clinic/practice-facing product site (Cloudflare-protected; 200 with browser UA).
+    - url: https://developer.hotdoc.com.au/
+      status: 200
+      note: Catch-all — serves the consumer marketing site, not a developer portal.
+    - url: https://api.hotdoc.com.au/
+      status: 200
+      note: Catch-all app root; API paths beneath it 404.
+    - url: https://api.hotdoc.com.au/metadata
+      status: 404
+    - url: https://fhir.hotdoc.com.au/metadata
+      status: 404
+    - url: https://api.hotdoc.com.au/.well-known/smart-configuration
+      status: 404
+    - url: https://api.hotdoc.com.au/openapi.json
+      status: 404
+    - url: https://api.hotdoc.com.au/swagger.json
+      status: 404
+    - url: https://status.hotdoc.com.au/
+      status: 200
+    - url: https://github.com/htdc
+      status: 200
+      note: Confirmed HotDoc GitHub org; repos are internal tooling/forks, no public API spec or SDK.
+sources:
+  - url: https://www.hotdoc.com.au/
+    type: Website
+    note: Consumer patient booking directory.
+  - url: https://practices.hotdoc.com.au/about/
+    type: About
+    note: Practice-facing product and company overview.
+  - url: https://bestpracticesoftware.com/partner-network/our-partners/hotdoc/
+    type: Reference
+    note: Confirms HotDoc integrates on top of the Best Practice PMS via partner integration.
+actions:
+  apisYmlUpdated: true
+  status: built-stub
+  reason: |
+    Identity captured with verified public web properties. No documented public
+    API, FHIR CapabilityStatement, or downloadable spec exists to catalog, so
+    apis[] is empty and openapi/ holds no specs. Nothing was fabricated.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
