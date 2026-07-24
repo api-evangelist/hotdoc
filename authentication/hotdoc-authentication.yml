@@ -1,0 +1,67 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.hotdoc.com.au/.well-known/openid-configuration
+note: >-
+  Derived from HotDoc's live OpenID Connect / OAuth 2.0 Authorization Server
+  Metadata (RFC 8414 + OpenID Connect Discovery 1.0), served as real JSON on both
+  the www and api hosts. There is no published OpenAPI, so this profile is taken
+  directly from the discovery document rather than from securitySchemes. The
+  authorization server is a Rails/Doorkeeper deployment; access is
+  partner/clinic-gated (no self-serve developer client registration is
+  documented).
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+  api_key_in: []
+schemes:
+- name: HotDocOpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://www.hotdoc.com.au/.well-known/openid-configuration
+  issuer: https://www.hotdoc.com.au
+  sources:
+  - well-known/hotdoc-openid-configuration.json
+- name: HotDocOAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.hotdoc.com.au/oauth/authorize
+    tokenUrl: https://www.hotdoc.com.au/oauth/token
+    scopes:
+      openid: OpenID Connect authentication
+  - flow: implicit
+    authorizationUrl: https://www.hotdoc.com.au/oauth/authorize
+    scopes:
+      openid: OpenID Connect authentication
+  sources:
+  - well-known/hotdoc-oauth-authorization-server.json
+endpoints:
+  authorization: https://www.hotdoc.com.au/oauth/authorize
+  token: https://www.hotdoc.com.au/oauth/token
+  userinfo: https://www.hotdoc.com.au/oauth/userinfo
+  introspection: https://www.hotdoc.com.au/oauth/introspect
+  revocation: https://www.hotdoc.com.au/oauth/revoke
+  jwks: https://www.hotdoc.com.au/oauth/discovery/keys
+token_endpoint_auth_methods:
+- client_secret_basic
+- client_secret_post
+id_token_signing_alg: RS256
+subject_types:
+- pairwise
+claims_supported:
+- iss
+- sub
+- aud
+- exp
+- iat
+- email
+- given_name
+- family_name
+- full_name
+- practice_name
+- pms_software
+- access_level
+- company

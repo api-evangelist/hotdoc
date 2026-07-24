@@ -1,0 +1,29 @@
+generated: '2026-07-24'
+method: searched
+probe: true
+source: https://practices.hotdoc.com.au/security/
+url: https://practices.hotdoc.com.au/security/
+certifications:
+- SOC 2 Type II
+compliance:
+- Australian Privacy Act 1988
+- Australian Privacy Principles (APPs)
+- RACGP data-security guidelines
+data_residency: Australia (AWS, multiple availability zones); no overseas transfer
+encryption:
+  in_transit: 256-bit TLS
+  at_rest: AES-256
+note: >-
+  HotDoc states it maintains annual SOC 2 Type II accreditation "even though we're
+  not required to." All personal information is stored and processed within
+  Australia on AWS across multiple availability zones and is never transferred
+  overseas. No ISO 27001, HIPAA, or PCI DSS certification is claimed (HotDoc never
+  stores card details, holding only an anonymised payment token).
+evidence:
+- source: https://practices.hotdoc.com.au/security/
+  keywords:
+  - soc 2 type ii
+  - australian privacy act 1988
+  - australian privacy principles
+  - aes-256
+  - aws australia

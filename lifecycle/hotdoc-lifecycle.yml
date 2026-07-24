@@ -1,0 +1,19 @@
+generated: '2026-07-24'
+method: searched
+source: https://status.hotdoc.com.au/
+note: >-
+  HotDoc publishes a public status page. No versioned public API, deprecation
+  policy (RFC 8594 Sunset/Deprecation headers), or published SLA is documented,
+  consistent with HotDoc having no self-serve developer API — its integration
+  surface is partner/PMS-gated.
+status_page: https://status.hotdoc.com.au/
+versioning:
+  scheme: null
+  current: null
+  docs: null
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+  uptime_target: null

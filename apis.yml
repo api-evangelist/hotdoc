@@ -13,9 +13,11 @@ description: >-
   layer on top of Australian practice-management systems (Best Practice, MedicalDirector,
   Zedmed, Genie, Cliniko, Nookal and others): a clinic connects HotDoc by entering its
   practice-management-system API key into the HotDoc dashboard, so HotDoc consumes those PMS
-  APIs rather than publishing its own. As of the review date HotDoc exposes no public
-  developer portal, no documented third-party REST/OpenAPI, and no HL7 FHIR CapabilityStatement;
-  its integration surface is partner/PMS-gated. HotDoc was acquired by Potentia in February 2026.
+  APIs rather than publishing its own. HotDoc does operate a real OpenID Connect / OAuth 2.0
+  authorization server (Rails/Doorkeeper) for clinic and partner sign-in, served with live
+  discovery metadata and a JWKS, but exposes no self-serve public developer portal, no
+  documented third-party REST/OpenAPI, and no HL7 FHIR CapabilityStatement; its integration
+  surface is partner/PMS-gated. HotDoc was acquired by Potentia in February 2026.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Healthcare
@@ -31,7 +33,22 @@ tags:
 created: '2026-07-24'
 modified: '2026-07-24'
 specificationVersion: '0.19'
-apis: []
+apis:
+- name: HotDoc OpenID Connect
+  description: >-
+    HotDoc's OpenID Connect / OAuth 2.0 authorization server (Rails/Doorkeeper) for clinic and
+    partner sign-in. Discovery metadata (OIDC + RFC 8414) and a live RS256 JWKS are served
+    publicly; authorization_code and implicit flows are supported with the openid scope and
+    identity claims carrying practice/PMS context. Client registration is partner/clinic-gated.
+  humanURL: https://practices.hotdoc.com.au/security/
+  baseURL: https://api.hotdoc.com.au/
+  properties:
+  - type: OpenIDConnect
+    url: well-known/hotdoc-openid-configuration.json
+  - type: Authentication
+    url: authentication/hotdoc-authentication.yml
+  - type: OAuthScopes
+    url: scopes/hotdoc-scopes.yml
 common:
 - type: Website
   url: https://www.hotdoc.com.au/
@@ -39,12 +56,44 @@ common:
   url: https://practices.hotdoc.com.au/
 - type: Blog
   url: https://www.hotdoc.com.au/blog/
+- type: Support
+  url: https://support.hotdoc.com.au/hc/en-gb
+- type: Pricing
+  url: https://support.hotdoc.com.au/hc/en-gb/articles/9993384697753-How-much-does-HotDoc-cost
+- type: SignUp
+  url: https://www.hotdoc.com.au/medical-centres/signup
+- type: TermsOfService
+  url: https://practices.hotdoc.com.au/terms-of-services-clinics/
+- type: PrivacyPolicy
+  url: https://practices.hotdoc.com.au/privacy-policy/
 - type: StatusPage
   url: https://status.hotdoc.com.au/
 - type: GitHubOrganization
   url: https://github.com/htdc
 - type: LinkedIn
   url: https://www.linkedin.com/company/hotdoc
+- type: Authentication
+  url: authentication/hotdoc-authentication.yml
+- type: OAuthScopes
+  url: scopes/hotdoc-scopes.yml
+- type: WellKnown
+  url: well-known/hotdoc-well-known.yml
+- type: Conformance
+  url: conformance/hotdoc-conformance.yml
+- type: Compliance
+  url: https://practices.hotdoc.com.au/security/
+- type: Lifecycle
+  url: lifecycle/hotdoc-lifecycle.yml
+- type: DomainSecurity
+  url: security/hotdoc-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/hotdoc-vulnerability-disclosure.yml
+- type: Security
+  url: https://practices.hotdoc.com.au/security/
+- type: TrustCenter
+  url: security/hotdoc-trust-center.yml
+- type: LLMsTxt
+  url: llms/hotdoc-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

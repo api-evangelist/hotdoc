@@ -1,0 +1,28 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.hotdoc.com.au/.well-known/openid-configuration
+docs: https://www.hotdoc.com.au/.well-known/openid-configuration
+note: >-
+  HotDoc's OpenID Connect discovery document advertises a single OAuth 2.0 scope,
+  "openid". No broader resource/API scope surface (read/write per-resource scopes)
+  is published; the authorization server issues OIDC identity tokens whose claims
+  (practice_name, pms_software, access_level, company) carry the authorization
+  context rather than granular scopes. Additional scopes, if any, are gated behind
+  partner/clinic client registration and are not publicly documented.
+schemes:
+- name: HotDocOAuth2
+  source: well-known/hotdoc-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.hotdoc.com.au/oauth/authorize
+    tokenUrl: https://www.hotdoc.com.au/oauth/token
+  - flow: implicit
+    authorizationUrl: https://www.hotdoc.com.au/oauth/authorize
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; returns an ID token with the subject and profile claims.
+  flows:
+  - authorizationCode
+  - implicit
+  sources:
+  - well-known/hotdoc-openid-configuration.json

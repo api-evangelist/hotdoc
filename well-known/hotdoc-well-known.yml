@@ -1,0 +1,42 @@
+generated: '2026-07-24'
+method: searched
+source: live /.well-known/ probes of HotDoc hosts
+note: >-
+  HotDoc serves real OpenID Connect / OAuth 2.0 Authorization Server Metadata
+  (Rails + Doorkeeper) on both the www and api hosts. The discovery documents are
+  genuine JSON (application/json), not the catch-all HTML shell, and the JWKS URI
+  resolves to a live RS256 signing key. No RFC 9116 security.txt is served at
+  /.well-known/security.txt (404); /security.txt 301-redirects to the human
+  security page at practices.hotdoc.com.au/security/.
+hosts:
+- host: https://www.hotdoc.com.au
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: hotdoc-openid-configuration.json
+    type: openid-configuration
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    type: oauth-authorization-server
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://api.hotdoc.com.au
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: hotdoc-oauth-authorization-server.json
+    type: oauth-authorization-server
+  - path: /.well-known/openid-configuration
+    status: 200
+    type: openid-configuration
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+jwks:
+  uri: https://www.hotdoc.com.au/oauth/discovery/keys
+  status: 200
+  keys: 1
+  alg: RS256
