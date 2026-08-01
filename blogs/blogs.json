@@ -1,0 +1,21 @@
+{
+  "repo": "hotdoc",
+  "feeds": [
+    {
+      "source": "https://practices.hotdoc.com.au/feed/",
+      "feed_url": "https://practices.hotdoc.com.au/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://practices.hotdoc.com.au/",
+      "feed_url": "https://practices.hotdoc.com.au/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 9,
+  "fetched": "2026-08-01T15:49:00Z"
+}
