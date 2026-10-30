@@ -1,4 +1,4 @@
-# HotDoc (hotdoc)
+# HotDoc
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,50 +64,102 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-HotDoc is an Australian patient-engagement platform, founded in 2012 and headquartered in Melbourne, that connects patients with general practices, dentists, and specialists. Roughly one in three Australians use HotDoc to find and book healthcare, and the platform serves more than 21,000 practitioners. Its clinic-facing SaaS provides online bookings, telehealth, appointment reminders, SMS recalls, mobile and kiosk check-in, digital new-patient registration forms, online repeat prescription requests, and preventative-health outreach. HotDoc was acquired by Potentia in February 2026.
+HotDoc is an Australian patient-engagement platform, founded in 2012 and headquartered in Melbourne, that connects patients with general practices, dentists, and specialists. Roughly one in three Australians use HotDoc to find and book healthcare, and the platform serves more than 21,000 practitioners across the country. Its clinic-facing SaaS provides online bookings, telehealth, appointment reminders, SMS recalls for clinical reminders and results, mobile and kiosk check-in, digital new-patient registration forms, online repeat prescription requests, and preventative-health outreach. HotDoc operates as an engagement layer on top of Australian practice-management systems (Best Practice, MedicalDirector, Zedmed, Genie, Cliniko, Nookal and others): a clinic connects HotDoc by entering its practice-management-system API key into the HotDoc dashboard, so HotDoc consumes those PMS APIs rather than publishing its own. HotDoc does operate a real OpenID Connect / OAuth 2.0 authorization server (Rails/Doorkeeper) for clinic and partner sign-in, served with live discovery metadata and a JWKS, but exposes no self-serve public developer portal, no documented third-party REST/OpenAPI, and no HL7 FHIR CapabilityStatement; its integration surface is partner/PMS-gated. HotDoc was acquired by Potentia in February 2026.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hotdoc/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hotdoc/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Australia · Patient Engagement · Online Booking · Appointment Scheduling · Telehealth · Practice Management · Primary Care · Digital Health · e-Prescribing · Scheduling
 
-## Tags
+## HotDoc on APIs.io
 
-- Healthcare
-- Australia
-- Patient Engagement
-- Online Booking
-- Appointment Scheduling
-- Telehealth
-- Practice Management
-- Primary Care
-- Digital Health
-- e-Prescribing
+Everything profiled for HotDoc is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hotdoc/](https://apis.io/providers/hotdoc/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (1)
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+- [HotDoc OpenID Connect](https://apis.io/apis/hotdoc/hotdoc-openid-connect/) — HotDoc's OpenID Connect / OAuth 2.0 authorization server (Rails/Doorkeeper) for clinic and partner sign-in. Discovery metadata (OIDC + RFC 8414) and a live…
 
-## API Posture
+### Published properties
 
-HotDoc operates as an engagement layer on top of Australian practice-management systems (Best Practice, MedicalDirector, Zedmed, Genie, Cliniko, Nookal and others). A clinic connects HotDoc by entering its practice-management-system API key into the HotDoc dashboard, so HotDoc **consumes** those PMS APIs rather than publishing its own.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-As of the review date (2026-07-24) HotDoc exposes:
+#### Security (4)
 
-- **No public developer portal** — the `developer.`, `docs.`, `api.`, and `fhir.` subdomains all resolve to the same catch-all HotDoc web application and serve the consumer site, not API documentation.
-- **No documented third-party REST/OpenAPI** — `/openapi.json` and `/swagger.json` return HTTP 404.
-- **No HL7 FHIR CapabilityStatement** — `/metadata`, `/fhir/metadata`, and `/.well-known/smart-configuration` return HTTP 404.
+Authentication, trust centre, and vulnerability disclosure.
 
-Its integration surface is partner/PMS-gated. See [`review.yml`](review.yml) for the full reviewer finding.
+- [Hotdoc Authentication](https://apis.io/security/hotdoc/hotdoc-authentication/)
+- [Hotdoc Domain Security](https://apis.io/security/hotdoc/hotdoc-domain-security/)
+- [Hotdoc Trust Center](https://apis.io/security/hotdoc/hotdoc-trust-center/)
+- [Hotdoc Vulnerability Disclosure](https://apis.io/security/hotdoc/hotdoc-vulnerability-disclosure/)
 
-## Common Properties
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Hotdoc Scopes](https://apis.io/scopes/hotdoc/hotdoc-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.hotdoc.com.au/)
-- [Practice / Product Site](https://practices.hotdoc.com.au/)
+- [Pricing](https://support.hotdoc.com.au/hc/en-gb/articles/9993384697753-How-much-does-HotDoc-cost)
+- [Sign up](https://www.hotdoc.com.au/medical-centres/signup)
+- [Support](https://support.hotdoc.com.au/hc/en-gb)
 - [Blog](https://www.hotdoc.com.au/blog/)
-- [Status Page](https://status.hotdoc.com.au/)
-- [GitHub Organization](https://github.com/htdc)
-- [LinkedIn](https://www.linkedin.com/company/hotdoc)
+- [Security](https://practices.hotdoc.com.au/security/)
+- [Compliance](https://practices.hotdoc.com.au/security/)
+- [Terms of service](https://practices.hotdoc.com.au/terms-of-services-clinics/)
+- [Privacy policy](https://practices.hotdoc.com.au/privacy-policy/)
+- [GitHub](https://github.com/htdc)
+- [Status](https://status.hotdoc.com.au/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 60.5 |
+
+**Agent readiness 10.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 46.1** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hotdoc/](https://apis.io/providers/hotdoc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for HotDoc: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hotdoc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
